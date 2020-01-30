@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from app.domain.repository.dish_repository import DishRepository
 
 app = Flask(__name__)
 
@@ -17,6 +18,16 @@ def hello():
             'stringCount': co,
             'message': 'Hello, world'
         }
+    )
+
+
+@app.route('/dishes')
+def dishes():
+    dishes = DishRepository.find_with_dishes()
+    return jsonify(
+        dict(
+            dishes=[dish.to_dict() for dish in dishes]
+        )
     )
 
 

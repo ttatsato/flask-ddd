@@ -15,4 +15,28 @@ services:
       # Flaskのホットリロード設定
       FLASK_APP: "app/main.py"
       FLASK_ENV: "development"
+      MYSQL_CONTAINER_NAME: nanitabetai_mysql
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
     command: "flask run --host 0.0.0.0 --port 5000"
+    depends_on:
+      - mysql
+    links:
+      - mysql
+
+  mysql:
+    container_name: "nanitabetai_mysql"
+    image: mysql:8.0
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - $MYSQL_PORT:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE

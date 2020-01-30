@@ -1,3 +1,7 @@
 .idea
 .mypy_cache
 venv
+data
+.env.example
+**/__pycache__
+__pycache__
