@@ -1,3 +1,9 @@
+# FlaskでDDD
+webフレームワークFlaskでDDDをやってみる
+
+----
+下記は、メモ
+
 # はじめに
 FlaskはPython用の軽量マイクロWebフレームワークです。  
 
