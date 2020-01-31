@@ -3,6 +3,7 @@ import os
 
 
 class Database:
+
     @classmethod
     def connect_db(cls) -> connector.connection:
         try:
