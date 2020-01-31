@@ -1,7 +1,7 @@
 from app.domain.value_object.cuisine import Cuisine
 
 
-class Dish:
+class DishEntity:
     def __init__(self, id: int, name: str, cuisine: str) -> None:
         self.id: int = id
         self.name: str = name
